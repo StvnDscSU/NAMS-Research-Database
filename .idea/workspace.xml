@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f39e2014-fc8a-4309-8c8e-502b5a438c50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_ajax.php" beforeDir="false" afterPath="$PROJECT_DIR$/view_ajax.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1mIJwfkLVlfPmt5NQk8SuI0Ow71" />
   <component name="ProjectViewState">
@@ -45,7 +53,7 @@
       <updated>1609175412755</updated>
       <workItem from="1609175414690" duration="2748000" />
       <workItem from="1609350610796" duration="691000" />
-      <workItem from="1609383995562" duration="14356000" />
+      <workItem from="1609383995562" duration="18151000" />
     </task>
     <servers />
   </component>

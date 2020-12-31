@@ -1,4 +1,13 @@
 body {
     background: #282c34;
-    color: #fff;
+    color: #fff !important;
+}
+
+html {
+    background: #282c34;
+    color: #fff !important;
+}
+
+table {
+    color: #fff !important;
 }
