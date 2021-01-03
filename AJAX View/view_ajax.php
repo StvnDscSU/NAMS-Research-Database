@@ -1,15 +1,17 @@
 <?php
-	include 'database.php';
-	//Query the Professor Table and sets up a query for the subtables.
-	$sql = "SELECT * FROM professors";
-    $result = $conn->query($sql);
-    $query = "SELECT research.name AS Name, research.email AS Email, research.experience AS Experience, Description, Compensation FROM research left join professors on research.email = professors.email";
-    $researchvalue = $conn->query($query); // We use this line within a While loop later on.
+// Database Connection setup beforehand.
+include 'database.php';
+//Query the Professor Table and sets up a query for the subtables.
+$sql = "SELECT * FROM professors";
+$result = $conn->query($sql);
+$query = "SELECT research.name AS Name, research.email AS Email, research.experience AS Experience, Description, Compensation FROM research left join professors on research.email = professors.email";
+$researchvalue = $conn->query($query); // We use this line within a While loop later on.
+
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         ?>
         <!-- Populates the main table with each professor's Name, Discipline, and Expertise -->
-        <tr>
+        <tr class="main"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
             <td><?=$row['Name'];?></td>
             <td><?=$row['Discipline'];?></td>
             <td><?=$row['Expertise'];?></td>
@@ -32,10 +34,11 @@ if ($result->num_rows > 0) {
             if ($entry["Email"] == $row["Email"]) { // If a professor's name appears in both Professor and Research, create a subtable.
                 if ($headerCounter++ == 0) { // Indicates that a subtable was created then increment the headerCounter.
         ?>
+								<!-- SUBTABALE START -->
                 <!-- Initialize the subtable and create the header -->
-                <tr>
-                <td colspan="3">
-                    <table>
+                <tr class="hidden">
+                <td colspan="3" class="hidden">
+                    <table class="hidden">
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
