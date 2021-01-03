@@ -4,8 +4,10 @@ html {
   color: #fff;
 }
 
-body {
 
+body {
+    background: #282c34;
+    color: #fff;
 }
 
 /* Colors for  */
