@@ -10,19 +10,23 @@
 </head>
 <div class="container">
   <h2>View data</h2>
-	<table class="table table-bordered table-sm" >
+
+
+  <table id="professor_table">
     <thead>
-      <tr>
-          <th>Name</th>
-          <th>Discipline</th>
-          <th>Expertise</th>
+      <tr class="main_head">
+        <th>Name</th>
+        <th>Discipline</th>
+        <th>Expertise</th>
       </tr>
     </thead>
-    <tbody id="table">
+    <tbody>
 
     </tbody>
   </table>
 </div>
+
+
 <script>
 	$.ajax({
 		url: "view_ajax.php",
