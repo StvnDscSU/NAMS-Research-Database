@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="style.css">
+
+<html>
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+  <table id="professor_table" class="table">
+    <thead>
+      <tr class="main_head">
+        <th>Name</th>
+        <th>Discipline</th>
+        <th>Expertise</th>
+        <th>Openings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="main" id="1">
+        <td>Chia-Lin Wu</td>
+        <td>Mathematics</td>
+        <td>Computer Science</td>
+        <td>2</td>
+      </tr>
+      <tr class="hidden">
+        <td colspan="4" class="hidden">
+          <table class="hidden">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Experience</th>
+              <th>Compensation</th>
+            </tr>
+            <tr>
+              <td>Disease Modeling</td>
+              <td>Exploring Disease Clusters</td>
+              <td>Senior</td>
+              <td>$1000</td>
+            </tr>
+            <tr>
+              <td>Risk Calculating</td>
+              <td>Calculating Risk</td>
+              <td>Intern</td>
+              <td>$500</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="main" id="2">
+        <td>Pamela Kosick</td>
+        <td>Mathematics</td>
+        <td>Number Theory</td>
+        <td>1</td>
+      </tr>
+      <tr class="hidden">
+        <td colspan="4" class="hidden">
+          <table class="hidden">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Experience</th>
+              <th>Compensation</th>
+            </tr>
+            <tr>
+              <td>Cryptoanalysis</td>
+              <td>Exploring Disease Clusters</td>
+              <td>Senior</td>
+              <td>$1000</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="main" id="3">
+        <td>Juan Tolosa</td>
+        <td>Mathematics</td>
+        <td>General</td>
+        <td>0</td>
+      </tr>
+      <tr class="main" id="4">
+        <td>Bradley Forrest</td>
+        <td>Mathematics</td>
+        <td>Game Theory</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+
+</body>
+</html>
+
+
+
+<button type="button">a</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $('tr.main').on('click', function() {
+    var rowID = this.id;
+    alert(rowID);
+  });
+</script>
