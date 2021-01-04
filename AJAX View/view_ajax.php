@@ -8,10 +8,11 @@ $query = "SELECT research.name AS Name, research.email AS Email, research.experi
 $researchvalue = $conn->query($query); // We use this line within a While loop later on.
 
 if ($result->num_rows > 0) {
+  $rowID = 1; //Links each row with each subtable by providing both elements with the same ID.
     while($row = $result->fetch_assoc()) {
         ?>
         <!-- Populates the main table with each professor's Name, Discipline, and Expertise -->
-        <tr class="main"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
+        <tr class="main" id="<?=$rowID;?>"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
             <td><?=$row['Name'];?></td>
             <td><?=$row['Discipline'];?></td>
             <td><?=$row['Expertise'];?></td>
@@ -36,7 +37,7 @@ if ($result->num_rows > 0) {
         ?>
 								<!-- SUBTABALE START -->
                 <!-- Initialize the subtable and create the header -->
-                <tr class="hidden">
+                <tr class="hidden" id="<?=$rowID;?>">
                 <td colspan="3" class="hidden">
                     <table class="hidden">
                         <tr>
