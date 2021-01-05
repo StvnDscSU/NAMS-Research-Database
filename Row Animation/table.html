@@ -102,7 +102,7 @@ $('button').on('click', function() {
 
 $('tr.main').on('click', function() {
   var rowID = this.id;
-    $('tr#1.hidden').toggleClass('active');
+  $('tr#'+rowID+'.hidden').toggleClass('active');
 });
 </script>
 </body>
