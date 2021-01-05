@@ -16,18 +16,18 @@
     </tr>
   </thead>
   <tbody>
-  <tr class="main">
-    <td>Chia-Lin Wu</td>
-    <td>Mathematics</td>
-    <td>Computer Science</td>
-    <td>2</td>
-  </tr>
+    <tr class="main" id="1">
+      <td>Chia-Lin Wu</td>
+      <td>Mathematics</td>
+      <td>Computer Science</td>
+      <td>2</td>
+    </tr>
 
-  <!-- HIDDEN ROW START -->
-  <tr class="hidden active">
-    <td colspan="4" class="hidden">
-      <div>
-        <table class="hidden active">
+    <!-- HIDDEN SUBTABLE START -->
+    <tr class="hidden" id="1">
+      <td colspan="4" class="hidden">
+        <div class="">
+        <table class="hidden">
           <tr>
             <th>Name</th>
             <th>Description</th>
@@ -48,52 +48,61 @@
           </tr>
         </table>
       </div>
-    </td>
-  </tr>
-  <!-- HIDDEN ROW END -->
+      </td>
+    </tr>
+    <!-- HIDDEN SUBTABLE END -->
 
-  <tr class="main">
-    <td>Pamela Kosick</td>
-    <td>Mathematics</td>
-    <td>Number Theory</td>
-    <td>1</td>
-  </tr>
-  <tr class="hidden">
-    <td colspan="4" class="hidden">
-      <table class="hidden">
-        <tr>
+    <tr class="main" id="2">
+      <td>Pamela Kosick</td>
+      <td>Mathematics</td>
+      <td>Number Theory</td>
+      <td>1</td>
+    </tr>
+    <tr class="hidden" id="2">
+      <td colspan="4" class="hidden">
+        <div class="">
+        <table class="hidden">
+          <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Experience</th>
             <th>Compensation</th>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td>Cryptoanalysis</td>
             <td>Exploring Disease Clusters</td>
             <td>Senior</td>
             <td>$1000</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr class="main">
-    <td>Juan Tolosa</td>
-    <td>Mathematics</td>
-    <td>General</td>
-    <td>0</td>
-  </tr>
-  <tr class="main">
-    <td>Bradley Forrest</td>
-    <td>Mathematics</td>
-    <td>Game Theory</td>
-    <td>0</td>
-  </tr>
+          </tr>
+        </table>
+      </div>
+      </td>
+    </tr>
+    <tr class="main" id="3">
+      <td>Juan Tolosa</td>
+      <td>Mathematics</td>
+      <td>General</td>
+      <td>0</td>
+    </tr>
+    <tr class="main" id="4">
+      <td>Bradley Forrest</td>
+      <td>Mathematics</td>
+      <td>Game Theory</td>
+      <td>0</td>
+    </tr>
   </tbody>
 </table>
 <br><br>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script>
 $('button').on('click', function() {
   $('tr').toggleClass('active');
+});
+
+$('tr.main').on('click', function() {
+  var rowID = this.id;
+    $('tr#1.hidden').toggleClass('active');
 });
 </script>
 </body>

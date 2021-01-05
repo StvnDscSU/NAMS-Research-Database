@@ -6,12 +6,12 @@
       <td><div>...</div></td>
       <td><div>...</div></td>
     </tr>
-    <tr>
+    <tr class="hidden active">
       <td><div>Row 2</div></td>
       <td><div>...</div></td>
       <td><div>...</div></td>
     </tr>
-    <tr class="active">
+    <tr class="hidden active">
       <td><div>Row 3</div></td>
       <td><div>...</div></td>
       <td><div>...</div></td>
@@ -27,5 +27,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <link rel="stylesheet" href="example.css">
 <script>$('button').on('click', function() {
-  $('tr:nth-child(4)').toggleClass('active');
+  $('tr:nth-child(1)').toggleClass('active');
 });</script>
