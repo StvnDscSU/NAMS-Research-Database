@@ -1,15 +1,16 @@
 <?php
 // Database Connection setup beforehand.
 include 'database.php';
-//Query the Professor Table and sets up a query for the subtables.
+// Query the Professor Table and sets up a query for the subtables.
 $sql = "SELECT * FROM professors";
 $result = $conn->query($sql);
 $query = "SELECT research.name AS Name, research.email AS Email, research.experience AS Experience, Description, Compensation FROM research left join professors on research.email = professors.email";
 $researchvalue = $conn->query($query); // We use this line within a While loop later on.
 
 if ($result->num_rows > 0) {
-  $rowID = 1; //Links each row with each subtable by providing both elements with the same ID.
+  $rowID = 0; // Links each row with each subtable by providing both elements with the same ID.
     while($row = $result->fetch_assoc()) {
+        $rowID++;  
         ?>
         <!-- Populates the main table with each professor's Name, Discipline, and Expertise -->
         <tr class="main" id="<?=$rowID;?>"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
@@ -39,6 +40,7 @@ if ($result->num_rows > 0) {
                 <!-- Initialize the subtable and create the header -->
                 <tr class="hidden" id="<?=$rowID;?>">
                 <td colspan="3" class="hidden">
+                  <div>
                     <table class="hidden">
                         <tr>
                             <th>Name</th>
@@ -60,6 +62,7 @@ if ($result->num_rows > 0) {
         if ($headerCounter != 0) { // If the subtable was initialized, then close the subtable.
         ?>
                     </table>
+                  </div>
                 </td>
                 </tr>
                 <?php
@@ -71,3 +74,9 @@ else {
 }
 mysqli_close($conn);
 ?>
+<script>
+$('tr.main').on('click', function() {
+  var rowID = this.id;
+  $('tr#'+rowID+'.hidden').toggleClass('active');
+});
+</script>

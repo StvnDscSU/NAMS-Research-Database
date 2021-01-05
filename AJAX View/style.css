@@ -87,6 +87,20 @@ table {
   background: var(--table-hidden-tr-hover-bg);
 }
 
+/*** ANIMATION ***/
+/* Hide/Show Animation */
+/* PROBLEM -- MAX-HEIGHT MAKES THE TRANSITION JANK */
+tr.hidden td div {
+  max-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: max-height 0.6s, padding 0.3s;
+}
+tr.hidden.active td div {
+  max-height: 200px;
+  padding: 10px 10px;
+  transition: max-height 1.2s, padding 0.6s;
+}
 
 .hidden {
   -display: none;
