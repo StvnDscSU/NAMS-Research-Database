@@ -8,7 +8,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <div class="container">
-  <h2>View data</h2>
+  <!-- SEARCH FUNCTION -->
+  <input type="text" id="search" placeholder="Type to search">
+  <select id="filterList" onchange="filterList()" class='form-control'>
+  <option></option>
+  <option>Mathematics</option>
+  <option>Chemistry</option>
+  <option>Physics</option>
+  </select>
+  <br><br>
+
 	<table id="professor_table">
     <thead>
       <tr class="main_head">
