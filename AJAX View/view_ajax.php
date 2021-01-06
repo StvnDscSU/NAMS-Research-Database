@@ -10,7 +10,7 @@ $researchvalue = $conn->query($query); // We use this line within a While loop l
 if ($result->num_rows > 0) {
   $rowID = 0; // Links each row with each subtable by providing both elements with the same ID.
     while($row = $result->fetch_assoc()) {
-        $rowID++;  
+        $rowID++;
         ?>
         <!-- Populates the main table with each professor's Name, Discipline, and Expertise -->
         <tr class="main" id="<?=$rowID;?>"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
