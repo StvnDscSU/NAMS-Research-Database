@@ -155,27 +155,25 @@ $('button.edit').on('click', function() {
   var rowID = $(this).parent().parent().attr('id');
   editButton(rowID);
 });
+
+$('button.save').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  editButton(rowID);
+});
+
 var press = 0;
 function editButton(rowID) {
   alert(++press);
   $('tr#'+rowID+' td.editable').toggleClass('hide');
 
-  $('tr#'+rowID+' button.edit').toggleClass('active', false);
-  $('tr#'+rowID+' button.save').toggleClass('active', true);
-}
-
-function saveButton(rowID) {
-  alert(++press);
-  $('tr#'+rowID+' td.editable').toggleClass('hide');
-
-  $('tr#'+rowID+' button.save.active').toggleClass('active', false);
+  $('tr#'+rowID+' button.edit').toggleClass('active');
+  $('tr#'+rowID+' button.save').toggleClass('active');
 }
 
 /* Table Edit */
 // Professors
   $(document).on("click", ".save", function() {
     var rowID = $(this).parent().parent().attr('id');
-    $("button.edit").attr("disabled", "disabled");
     var table = 'professors';
     var email = $(this).parent().parent().find("#email").html();
 
@@ -197,21 +195,19 @@ function saveButton(rowID) {
         success: function(dataResult) {
           var dataResult = JSON.parse(dataResult);
           if(dataResult.statusCode==200) {
-          $("button.save").removeAttr("disabled");
-          viewData();
+          $('tr#' + rowID + ' td#disciplineInfo').html(discipline);
+          $('tr#' + rowID + ' td#expertiseInfo').html(expertise);
             //$("#success").show();
             //$('#success').html('Data added successfully!');
           }
           else if(dataResult.statusCode==201) {
             alert("Query Error! Please Make sure no duplicate entries were input.");
           }
-          $("button.save").removeAttr("disabled");
         }
       });
     }
     else{
       alert('Please fill in every field!');
-      $("button.save").removeAttr("disabled");
     }
 
     });
