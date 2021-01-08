@@ -62,9 +62,8 @@ for (var i = 0; i < buttons.length; i++) {
 }
 
 /*** TABLE AUGMENTATIONS ***/
-
-
 /* Table Add */
+//Professors
 function AddProfessors() {
     $("#addProfessors").attr("disabled", "disabled");
     var table = 'professors';
@@ -106,6 +105,7 @@ function AddProfessors() {
     }
 }
 
+// Research
 function AddResearch() {
   $("#addResearch").attr("disabled", "disabled");
   var table = 'research';
@@ -185,75 +185,40 @@ function AddUser() {
     });
   });
 
-  // Research
-    $(document).on("click", "#research.confirm.delete", function() {
-      var table = $(this).attr('id');
-      var row = $(this).parent().parent();
-      var rowID = $(this).parent().parent().attr('id');
-      var name = $(this).parent().parent().find("#name").html();
-      var email = $(this).parent().parent().find("#email").html();
-      $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
-
-      $.ajax({
-        url: "src/delete.php",
-        type: "POST",
-        cache: false,
-        data:{
-          table: table,
-          name: name,
-          email: email
-        },
-        success: function(dataResult){
-          var dataResult = JSON.parse(dataResult);
-          if(dataResult.statusCode==200){
-            //row.fadeOut();
-            row.remove();
-          }
-          else {
-            alert('There was an error removing the selected entry.')
-            $('button.confirm.delete').removeAttr("disabled");
-          }
-        }
-      });
-    });
-
-/* Buttons */
-$('button.delete').on('click', function() {
+// Research
+$(document).on("click", "#research.confirm.delete", function() {
+  var table = $(this).attr('id');
+  var row = $(this).parent().parent();
   var rowID = $(this).parent().parent().attr('id');
-  $('tr#'+rowID+' button.delete').toggleClass('active', false);
-  $('tr#'+rowID+' button.confirm.delete').toggleClass('active', true);
+  var name = $(this).parent().parent().find("#name").html();
+  var email = $(this).parent().parent().find("#email").html();
+  $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
+
+  $.ajax({
+    url: "src/delete.php",
+    type: "POST",
+    cache: false,
+    data:{
+      table: table,
+      name: name,
+      email: email
+    },
+    success: function(dataResult){
+      var dataResult = JSON.parse(dataResult);
+      if(dataResult.statusCode==200){
+        //row.fadeOut();
+        row.remove();
+      }
+      else {
+        alert('There was an error removing the selected entry.')
+        $('button.confirm.delete').removeAttr("disabled");
+      }
+    }
+  });
 });
-
-$('button.edit').on('click', function() {
-  var rowID = $(this).parent().parent().attr('id');
-  editButton(rowID);
-});
-
-$('button.save').on('click', function() {
-  var rowID = $(this).parent().parent().attr('id');
-  $('tr#'+rowID+' button.save').attr("disabled", "disabled");
-  identifyRow(rowID);
-  SaveProfessors(this);
-});
-
-var press = 0;
-function editButton(rowID) {
-  //alert(++press);
-  $('tr#'+rowID+' td.editable').toggleClass('hide');
-
-  $('tr#'+rowID+' button.edit').toggleClass('active');
-  $('tr#'+rowID+' button.save').toggleClass('active');
-}
-
-/* Identifier */
-function identifyRow(rowID) {
-  $('.identify').toggleClass('identify', false);
-  $('tr#'+ rowID).toggleClass('identify');
-}
 
 /* Table Edit */
 // Professors
-
 function SaveProfessors (thisObj) {
   var rowID = $(thisObj).parent().parent().attr('id');
   var table = 'professors';
@@ -261,7 +226,6 @@ function SaveProfessors (thisObj) {
   var discipline = $(thisObj).parent().parent().find("#discipline").find('input').val();
   var expertise = $(thisObj).parent().parent().find("#expertise").find('input').val();
   //alert('Pre: Looking to change row "' + rowID + '" with the following information:\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
-
 
   $.ajax({
     url: "src/update.php",
@@ -295,5 +259,93 @@ function SaveProfessors (thisObj) {
       }
     }
   });
-
 };
+
+// Research
+function SaveResearch (thisObj) {
+  var table         = 'research';
+  var rowID         = $(thisObj).parent().parent().attr('id');
+  var name          = $(thisObj).parent().parent().find("#name").html();
+  var email         = $(thisObj).parent().parent().find("#email").html();
+  var description   = $(thisObj).parent().parent().find("#description").find('input').val();
+  var experience    = $(thisObj).parent().parent().find("#experience").find('input').val();
+  var compensation  = $(thisObj).parent().parent().find("#compensation").find('input').val();
+  // alert('Pre: Looking to change row "' + rowID + '" with the following information:\nName: ' + name + '\nEmail: ' + email + '\nDescription: ' + description + '\nExperience: ' + experience +'\nCompensation: ' + compensation);
+
+  $.ajax({
+    url: "src/update.php",
+    type: "POST",
+    data: {
+      table: table,
+      name: name,
+      email: email,
+      description: description,
+      experience: experience,
+      compensation: compensation
+    },
+    cache: false,
+    success: function(dataResult) {
+      var dataResult = JSON.parse(dataResult);
+      if(dataResult.statusCode==200) {
+        $('tr#'+rowID+' button.save').removeAttr("disabled");
+        editButton(rowID);
+
+        $('.locate').toggleClass('locate', false);
+        $('.identify td#descriptionInfo').toggleClass('locate');
+        $('.identify td#experienceInfo').toggleClass('locate');
+        $('.identify td#compensationInfo').toggleClass('locate');
+
+        $('.identify td#descriptionInfo').html(description);
+        $('.identify td#experienceInfo').html(experience);
+        $('.identify td#compensationInfo').html(compensation);
+        //$("#success").show();
+        //$('#success').html('Data added successfully!');
+      }
+      else if(dataResult.statusCode==201) {
+        alert("Query Error!");
+        $('tr#'+rowID+' button.save').removeAttr("disabled");
+      }
+    }
+  });
+};
+
+
+
+/* Buttons */
+$('button.delete').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  $('tr#'+rowID+' button.delete').toggleClass('active', false);
+  $('tr#'+rowID+' button.confirm.delete').toggleClass('active', true);
+});
+
+$('button.edit').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  editButton(rowID);
+});
+
+$('button.save').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  var table = $(this).attr('id');
+  $('tr#'+rowID+' button.save').attr("disabled", "disabled");
+  identifyRow(rowID);
+  if (table == 'professors') {
+    SaveProfessors(this);
+  } else if (table == 'research') {
+    SaveResearch(this);
+  }
+});
+
+var press = 0;
+function editButton(rowID) {
+  //alert(++press);
+  $('tr#'+rowID+' td.editable').toggleClass('hide');
+
+  $('tr#'+rowID+' button.edit').toggleClass('active');
+  $('tr#'+rowID+' button.save').toggleClass('active');
+}
+
+/* Identifier */
+function identifyRow(rowID) {
+  $('.identify').toggleClass('identify', false);
+  $('tr#'+ rowID).toggleClass('identify');
+}

@@ -115,9 +115,18 @@ if ($resultP->num_rows > 0) {
               <tr id='<?=$counter?>'>
                   <td id='name'><?=$rowR['name'];?></td>
                   <td id='email'><?=$rowR['email'];?></td>
-                  <td><?=$rowR['description'];?></td>
-                  <td><?=$rowR['experience'];?></td>
-                  <td><?=$rowR['compensation'];?></td>
+
+
+                  <td class='editable' id='descriptionInfo'><?=$rowR['description'];?></td>
+                  <td class='editable hide' id='description'><input type="text" name="description" id='description' value="<?=$rowR['description'];?>" required></td>
+
+                  <td class='editable' id='experienceInfo'><?=$rowR['experience'];?></td>
+                  <td class='editable hide' id='experience'><input type="text" name="experience" id='experience' value="<?=$rowR['experience'];?>" required></td>
+
+                  <td class='editable' id='compensationInfo'><?=$rowR['compensation'];?></td>
+                  <td class='editable hide' id='compensation'><input type="text" name="compensation" id='compensation' value="<?=$rowR['compensation'];?>" required></td>
+
+
                   <td>
                       <button type="button" id="research" class='delete active'>Delete</button>
                       <button type="button" id="research" class='confirm delete'>Confirm</button>
