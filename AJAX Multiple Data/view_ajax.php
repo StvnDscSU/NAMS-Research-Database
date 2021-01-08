@@ -57,11 +57,11 @@ if ($resultP->num_rows > 0) {
             <td class='editable hide' id='expertise'><input type="text" name="expertise" id='expertise' value="<?=$rowP['Expertise'];?>" required></td>
 
             <td>
-                <button type="button" class='delete active'>Delete</button>
-                <button type="button" class='confirm delete'>Confirm</button>
+                <button type="button" id="professors" class='delete active'>Delete</button>
+                <button type="button" id="professors" class='confirm delete'>Confirm</button>
 
-                <button type="button" class='edit active'>Edit</button>
-                <button type="button" class='save'>Save</button>
+                <button type="button" id="professors" class='edit active'>Edit</button>
+                <button type="button" id="professors" class='save'>Save</button>
             </td>
         </tr>
 <?php
@@ -113,17 +113,17 @@ if ($resultP->num_rows > 0) {
           while($rowR = $resultR->fetch_assoc()) {
               $counter++;?>
               <tr id='<?=$counter?>'>
-                  <td><?=$rowR['name'];?></td>
-                  <td><?=$rowR['email'];?></td>
+                  <td id='name'><?=$rowR['name'];?></td>
+                  <td id='email'><?=$rowR['email'];?></td>
                   <td><?=$rowR['description'];?></td>
                   <td><?=$rowR['experience'];?></td>
                   <td><?=$rowR['compensation'];?></td>
                   <td>
-                      <button type="button" class='delete active'>Delete</button>
-                      <button type="button" class='confirm delete'>Confirm</button>
+                      <button type="button" id="research" class='delete active'>Delete</button>
+                      <button type="button" id="research" class='confirm delete'>Confirm</button>
 
-                      <button type="button" class='edit active'>Edit</button>
-                      <button type="button" class='save'>Save</button>
+                      <button type="button" id="research" class='edit active'>Edit</button>
+                      <button type="button" id="research" class='save'>Save</button>
                   </td>
               </tr>
       <?php
@@ -178,3 +178,6 @@ if ($resultP->num_rows > 0) {
 <!-- Otherwise, we can directly call filterButton() instead of passing the variable to here. -->
 <?php $tab = isset($_REQUEST['tabChoice'])?$_REQUEST['tabChoice']:""; ?>
 <script>filterButton('<?php echo $tab ?>');</script>
+<script src='databaseUpdate.js'>
+
+</script>

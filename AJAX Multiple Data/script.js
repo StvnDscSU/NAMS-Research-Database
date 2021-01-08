@@ -155,8 +155,9 @@ function AddUser() {
 }
 
 /* Table Delete */
-  $(document).on("click", ".confirm.delete", function() {
-    var table = 'professors';
+// Professors
+  $(document).on("click", "#professors.confirm.delete", function() {
+    var table = $(this).attr('id');
     var row = $(this).parent().parent();
     var rowID = $(this).parent().parent().attr('id');
     var email = $(this).parent().parent().find("#email").html();
@@ -183,6 +184,38 @@ function AddUser() {
       }
     });
   });
+
+  // Research
+    $(document).on("click", "#research.confirm.delete", function() {
+      var table = $(this).attr('id');
+      var row = $(this).parent().parent();
+      var rowID = $(this).parent().parent().attr('id');
+      var name = $(this).parent().parent().find("#name").html();
+      var email = $(this).parent().parent().find("#email").html();
+      $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
+
+      $.ajax({
+        url: "src/delete.php",
+        type: "POST",
+        cache: false,
+        data:{
+          table: table,
+          name: name,
+          email: email
+        },
+        success: function(dataResult){
+          var dataResult = JSON.parse(dataResult);
+          if(dataResult.statusCode==200){
+            //row.fadeOut();
+            row.remove();
+          }
+          else {
+            alert('There was an error removing the selected entry.')
+            $('button.confirm.delete').removeAttr("disabled");
+          }
+        }
+      });
+    });
 
 /* Buttons */
 $('button.delete').on('click', function() {
