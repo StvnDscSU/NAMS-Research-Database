@@ -163,7 +163,6 @@ $('button.save').on('click', function() {
 
 var press = 0;
 function editButton(rowID) {
-  alert(++press);
   $('tr#'+rowID+' td.editable').toggleClass('hide');
 
   $('tr#'+rowID+' button.edit').toggleClass('active');
