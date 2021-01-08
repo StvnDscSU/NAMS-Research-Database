@@ -124,7 +124,11 @@ if ($resultP->num_rows > 0) {
   </table>
 </div>
 
-
-
 <script src="script.js"></script>
-<script>filterButton('professors');</script>
+<!-- We pass a variable to indicate the tab we want Ajax to select when refreshing the table. -->
+<!-- We call the table in here because if we select the tab in index.php, the table fails to load -->
+<!-- In time before the tab is selected. When the tab is selected, it fails to update the table. -->
+<!-- This is mainly an issue when the table needs updating, such as when the user first loads the page. -->
+<!-- Otherwise, we can directly call filterButton() instead of passing the variable to here. -->
+<?php $tab = isset($_REQUEST['tabChoice'])?$_REQUEST['tabChoice']:""; ?>
+<script>filterButton('<?php echo $tab ?>');</script>

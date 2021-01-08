@@ -10,9 +10,9 @@
 
 <!-- Buttons to select specific table -->
 <div id="button">
-  <button class="button act" onclick="filterButton('professors')">Professors</button> <!-- Buttons whose classes end in "act" will be highlighted. -->
-  <button class="button dorm" onclick="filterButton('research')">Research</button> <!-- Buttons whose classes end in "dorm" will not be highlighted. -->
-  <button class="button dorm" onclick="filterButton('users')">Users</button> <!-- Button classes change upon clicking on a button. -->
+  <button class="button act" onclick="changeTab('professors')">Professors</button> <!-- Buttons whose classes end in "act" will be highlighted. -->
+  <button class="button dorm" onclick="changeTab('research')">Research</button> <!-- Buttons whose classes end in "dorm" will not be highlighted. -->
+  <button class="button dorm" onclick="changeTab('users')">Users</button> <!-- Button classes change upon clicking on a button. -->
 </div>
 		<input type="button" name="save" class="btn btn-primary" value="Save to database" id="butsave">
 <br>
@@ -25,13 +25,19 @@
 
 
 <script>
+var myVar = "professors";
+function changeTab(tab) {
+  myVar = tab;
+  filterButton(tab)
+}
+
 viewData();
 function viewData()
 {
-  var professors = "professors";
 	$.ajax({
 		url: "view_ajax.php",
 		type: "POST",
+    data:{"tabChoice":myVar},
 		cache: false,
 		success: function(data){
 			$('#multi').html(data);
