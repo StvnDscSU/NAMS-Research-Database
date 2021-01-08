@@ -163,7 +163,7 @@ $('button.save').on('click', function() {
 
 var press = 0;
 function editButton(rowID) {
-  alert(++press);
+  //alert(++press);
   $('tr#'+rowID+' td.editable').toggleClass('hide');
 
   $('tr#'+rowID+' button.edit').toggleClass('active');
@@ -179,6 +179,7 @@ function editButton(rowID) {
 
     var discipline = $(this).parent().parent().find("#discipline").find('input').val();
     var expertise = $(this).parent().parent().find("#expertise").find('input').val();
+    alert('Pre: Looking to change row "' + rowID + '" with the following information:\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
 
 
     if(discipline!="" && expertise!="") {
@@ -197,6 +198,7 @@ function editButton(rowID) {
           if(dataResult.statusCode==200) {
           $('tr#' + rowID + ' td#disciplineInfo').html(discipline);
           $('tr#' + rowID + ' td#expertiseInfo').html(expertise);
+          alert('Success: Looking to change row "' + rowID + '" with\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
             //$("#success").show();
             //$('#success').html('Data added successfully!');
           }
