@@ -1,2 +1,9 @@
-<?php echo 'hi' ?>
-<p>Hello there!</p>
+<?php
+    $data = isset($_REQUEST['myData'])?$_REQUEST['myData']:"";
+?>
+<script>
+function speak() {
+  alert('<?php echo $data ?>');
+}
+speak();
+</script>
