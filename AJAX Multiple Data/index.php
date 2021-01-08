@@ -15,9 +15,8 @@
   <button class="button dorm" onclick="changeTab('research')">Research</button> <!-- Buttons whose classes end in "dorm" will not be highlighted. -->
   <button class="button dorm" onclick="changeTab('users')">Users</button> <!-- Button classes change upon clicking on a button. -->
 </div>
-		<input type="button" name="save" class="btn btn-primary" value="Save to database" id="butsave">
-<br>
 <button class="button dorm" onclick="viewData()">Update View</button> <!-- Button classes change upon clicking on a button. -->
+<br><br>
 
 <div class="multi" id="multi">
 

@@ -1,3 +1,4 @@
+<script src="script.js"></script>
 <?php
 // Database Connection setup beforehand.
 include 'database.php';
@@ -7,18 +8,28 @@ $resultP = $conn->query($sqlP);
 
 $sqlR = "SELECT * FROM research";
 $resultR = $conn->query($sqlR);
+// Forces administrator to use a valid email from an existing professor.
+$sqlEmailR = "SELECT DISTINCT Email FROM professors";
+$emailListR = $conn->query($sqlEmailR);
 
 $sqlU = "SELECT * FROM user";
 $resultU = $conn->query($sqlU);
 ?>
 <!-- Professors Tab -->
 <div class="filterDiv professors">
+<!-- Success Test
+  <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+    <p>Hello there!</p>
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+-->
+  </div>
   <form id='formProfessors' name='professors' method="post">
       <input type='text' name='Name' placeholder='Name' id='Name'>
       <input type='email' name='Email' placeholder='Email' id='Email'>
       <input type='text' name='Discipline' placeholder='Discipline' id='Discipline'>
       <input type='text' name='Expertise' placeholder='Expertise' id='Expertise'>
   </form>
+  <button type="button" name="button" id="addProfessors" onclick="AddProfessors()">Add Professors</button>
 
   <table>
     <thead>
@@ -27,6 +38,7 @@ $resultU = $conn->query($sqlU);
         <th>Email</th>
         <th>Discipline</th>
         <th>Expertise</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +51,7 @@ if ($resultP->num_rows > 0) {
             <td><?=$rowP['Email'];?></td>
             <td><?=$rowP['Discipline'];?></td>
             <td><?=$rowP['Expertise'];?></td>
+            <td class="delete" id='<?=$rowP['Email'];?>'><?=$rowP['Email'];?></td>
         </tr>
 <?php
     }
@@ -53,11 +66,25 @@ if ($resultP->num_rows > 0) {
 <div class="filterDiv research">
   <form id='formProfessors' name='professors' method="post">
       <input type='text' name='Name' placeholder='Name' id='Name'>
-      <input type='email' name='Email' placeholder='Email' id='Email'>
+
+      <select class='Email' name='Email' placeholder='Email' id='Email'>
+        <option value="">Email</option>
+        <?php
+        if ($emailListR->num_rows > 0) {
+          while($entryP = $emailListR->fetch_assoc()) {
+            ?>
+            <option value="<?=$entryP['Email'];?>"><?=$entryP['Email'];?></option>
+            <?php
+          }
+        }
+        ?>
+      </select>
+
       <input type='text' name='Description' placeholder='Description' id='Description'>
       <input type='text' name='Experience' placeholder='Experience' id='Experience'>
       <input type='text' name='Compensation' placeholder='Compensation' id='Compensation'>
   </form>
+  <button type="button" name="button" id="saveResearch">Save to Database</button>
 
   <table>
     <thead>
@@ -96,6 +123,7 @@ if ($resultP->num_rows > 0) {
       <input type='text' name='Pin' placeholder='Pin' id='Pin'>
       <input type='text' name='accesslevel' placeholder='Access Level' id='accesslevel'>
   </form>
+  <button type="button" name="button" id="saveUsers">Save to Database</button>
 
   <table>
     <thead>
@@ -124,7 +152,7 @@ if ($resultP->num_rows > 0) {
   </table>
 </div>
 
-<script src="script.js"></script>
+
 <!-- We pass a variable to indicate the tab we want Ajax to select when refreshing the table. -->
 <!-- We call the table in here because if we select the tab in index.php, the table fails to load -->
 <!-- In time before the tab is selected. When the tab is selected, it fails to update the table. -->

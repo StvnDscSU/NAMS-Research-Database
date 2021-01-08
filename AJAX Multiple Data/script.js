@@ -3,14 +3,13 @@ function changeTab(tab) {
   filterButton(tab)
 }
 
-function viewData()
-{
+function viewData() {
 	$.ajax({
 		url: "view_ajax.php",
 		type: "POST",
     data:{"tabChoice":myVar},
 		cache: false,
-		success: function(data){
+		success: function(data) {
 			$('#multi').html(data);
 		}
 	});
@@ -61,3 +60,79 @@ for (var i = 0; i < buttons.length; i++) {
     this.className += " act";
   });
 }
+
+/*** TABLE AUGMENTATIONS ***/
+/* Table Add */
+function AddProfessors() {
+    $("#addProfessors").attr("disabled", "disabled");
+    var table = 'professors';
+    var name = $('#Name').val();
+    var email = $('#Email').val();
+    var discipline = $('#Discipline').val();
+    var expertise = $('#Expertise').val();
+
+    if(name!="" && email!="" && discipline!="" && expertise!="") {
+      $.ajax({
+        url: "src/add.php",
+        type: "POST",
+        data: {
+          table: table,
+          name: name,
+          email: email,
+          discipline: discipline,
+          expertise: expertise
+        },
+        cache: false,
+        success: function(dataResult) {
+          var dataResult = JSON.parse(dataResult);
+          if(dataResult.statusCode==200) {
+            $('#formProfessors').find('input:text').val('');
+            viewData();
+            //$("#success").show();
+            //$('#success').html('Data added successfully!');
+          }
+          else if(dataResult.statusCode==201) {
+            alert("Query Error! Please Make sure no duplicate entries were input.");
+          }
+          $("#addProfessors").removeAttr("disabled");
+        }
+      });
+    }
+    else{
+      alert('Please fill in every field!');
+      $("#addProfessors").removeAttr("disabled");
+    }
+}
+
+function AddResearch() {
+
+}
+
+function AddUser() {
+
+}
+
+/* Table Delete */
+  $(document).on("click", ".delete", function() {
+    var table = 'professors';
+    var row = $(this).parent();
+    $.ajax({
+      url: "src/delete.php",
+      type: "POST",
+      cache: false,
+      data:{
+        table: table,
+        email: $(this).attr("id")
+      },
+      success: function(dataResult){
+        var dataResult = JSON.parse(dataResult);
+        if(dataResult.statusCode==200){
+          //row.fadeOut();
+          row.remove();
+        }
+        else {
+          alert('There was an error removing the selected entry.')
+        }
+      }
+    });
+  });
