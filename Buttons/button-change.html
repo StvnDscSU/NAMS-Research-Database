@@ -1,0 +1,26 @@
+<style>
+.delete.active {
+  display: inline;
+}
+.delete {
+  display: none;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div>
+  <button type="button" id='1' class='delete active' name="button"">Hey</button>
+  <button type="button" id='1' class='delete' name="button">Salut</button>
+</div>
+
+<div>
+  <button type="button" id='2' class='delete active' name="button"">Hey</button>
+  <button type="button" id='2' class='delete' name="button">Salut</button>
+</div>
+
+<script>
+$('button.delete').on('click', function() {
+  var rowID = this.id;
+  $('button#'+rowID+'.delete').toggleClass('active');
+});
+</script>

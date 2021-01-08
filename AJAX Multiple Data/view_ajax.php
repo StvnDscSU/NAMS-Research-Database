@@ -38,7 +38,7 @@ $resultU = $conn->query($sqlU);
         <th>Email</th>
         <th>Discipline</th>
         <th>Expertise</th>
-        <th></th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
