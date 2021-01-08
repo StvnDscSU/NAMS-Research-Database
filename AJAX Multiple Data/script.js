@@ -68,10 +68,10 @@ for (var i = 0; i < buttons.length; i++) {
 function AddProfessors() {
     $("#addProfessors").attr("disabled", "disabled");
     var table = 'professors';
-    var name = $('#Name').val();
-    var email = $('#Email').val();
-    var discipline = $('#Discipline').val();
-    var expertise = $('#Expertise').val();
+    var name = $('#NameP').val();
+    var email = $('#EmailP').val();
+    var discipline = $('#DisciplineP').val();
+    var expertise = $('#ExpertiseP').val();
 
     if(name!="" && email!="" && discipline!="" && expertise!="") {
       $.ajax({
@@ -107,7 +107,47 @@ function AddProfessors() {
 }
 
 function AddResearch() {
+  $("#addResearch").attr("disabled", "disabled");
+  var table = 'research';
+  var name = $('#NameR').val();
+  var email = $('#EmailR').val();
+  var description = $('#DescriptionR').val();
+  var experience = $('#ExperienceR').val();
+  var compensation = $('#CompensationR').val();
+  console.log('Provided Variables:\nname: ' + name + '\nemail: ' + email + '\ndiscipline: ' + description + '\nexperience: ' + experience + '\ncompensation: ' + compensation);
 
+  if(name!="" && email!="" && description!="" && experience!="") {
+    $.ajax({
+      url: "src/add.php",
+      type: "POST",
+      data: {
+        table: table,
+        name: name,
+        email: email,
+        description: description,
+        experience: experience,
+        compensation: compensation
+      },
+      cache: false,
+      success: function(dataResult) {
+        var dataResult = JSON.parse(dataResult);
+        if(dataResult.statusCode==200) {
+          $('#formResearch').find('input:text').val('');
+          viewData();
+          //$("#success").show();
+          //$('#success').html('Data added successfully!');
+        }
+        else if(dataResult.statusCode==201) {
+          alert("Query Error! Please Make sure no duplicate entries were input.");
+        }
+        $("#addResearch").removeAttr("disabled");
+      }
+    });
+  }
+  else{
+    alert('Please fill in every field!');
+    $("#addResearch").removeAttr("disabled");
+  }
 }
 
 function AddUser() {
@@ -158,7 +198,9 @@ $('button.edit').on('click', function() {
 
 $('button.save').on('click', function() {
   var rowID = $(this).parent().parent().attr('id');
-  editButton(rowID);
+  $('tr#'+rowID+' button.save').attr("disabled", "disabled");
+  identifyRow(rowID);
+  SaveProfessors(this);
 });
 
 var press = 0;
@@ -170,46 +212,55 @@ function editButton(rowID) {
   $('tr#'+rowID+' button.save').toggleClass('active');
 }
 
+/* Identifier */
+function identifyRow(rowID) {
+  $('.identify').toggleClass('identify', false);
+  $('tr#'+ rowID).toggleClass('identify');
+}
+
 /* Table Edit */
 // Professors
-  $(document).on("click", ".save", function() {
-    var rowID = $(this).parent().parent().attr('id');
-    var table = 'professors';
-    var email = $(this).parent().parent().find("#email").html();
 
-    var discipline = $(this).parent().parent().find("#discipline").find('input').val();
-    var expertise = $(this).parent().parent().find("#expertise").find('input').val();
-    alert('Pre: Looking to change row "' + rowID + '" with the following information:\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
+function SaveProfessors (thisObj) {
+  var rowID = $(thisObj).parent().parent().attr('id');
+  var table = 'professors';
+  var email = $(thisObj).parent().parent().find("#email").html();
+  var discipline = $(thisObj).parent().parent().find("#discipline").find('input').val();
+  var expertise = $(thisObj).parent().parent().find("#expertise").find('input').val();
+  //alert('Pre: Looking to change row "' + rowID + '" with the following information:\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
 
 
-    if(discipline!="" && expertise!="") {
-      $.ajax({
-        url: "src/update.php",
-        type: "POST",
-        data: {
-          table: table,
-          email: email,
-          discipline: discipline,
-          expertise: expertise
-        },
-        cache: false,
-        success: function(dataResult) {
-          var dataResult = JSON.parse(dataResult);
-          if(dataResult.statusCode==200) {
-          $('tr#' + rowID + ' td#disciplineInfo').html(discipline);
-          $('tr#' + rowID + ' td#expertiseInfo').html(expertise);
-          alert('Success: Looking to change row "' + rowID + '" with\nDiscipline: ' + discipline + '\nExpertise: ' + expertise);
-            //$("#success").show();
-            //$('#success').html('Data added successfully!');
-          }
-          else if(dataResult.statusCode==201) {
-            alert("Query Error! Please Make sure no duplicate entries were input.");
-          }
-        }
-      });
+  $.ajax({
+    url: "src/update.php",
+    type: "POST",
+    data: {
+      table: table,
+      email: email,
+      discipline: discipline,
+      expertise: expertise
+    },
+    cache: false,
+    success: function(dataResult) {
+      var dataResult = JSON.parse(dataResult);
+      if(dataResult.statusCode==200) {
+        $('tr#'+rowID+' button.save').removeAttr("disabled");
+        editButton(rowID);
+
+        $('.locate').toggleClass('locate', false);
+        $('.identify td#disciplineInfo').toggleClass('locate');
+        $('.identify td#expertiseInfo').toggleClass('locate');
+        console.log('tr#' + rowID + ' td#disciplineInfo');
+
+        $('.identify td#disciplineInfo').html(discipline);
+        $('.identify td#expertiseInfo').html(expertise);
+        //$("#success").show();
+        //$('#success').html('Data added successfully!');
+      }
+      else if(dataResult.statusCode==201) {
+        alert("Query Error!");
+        $('tr#'+rowID+' button.save').removeAttr("disabled");
+      }
     }
-    else{
-      alert('Please fill in every field!');
-    }
+  });
 
-    });
+};

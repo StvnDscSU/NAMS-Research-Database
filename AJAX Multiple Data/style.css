@@ -150,3 +150,11 @@ button.active {
 td.editable.hide {
   display: none;
 }
+
+tr.identify {
+  background: #388f68;
+}
+
+tr.identify .locate {
+  background: #968665 !important;
+}

@@ -23,10 +23,10 @@ $resultU = $conn->query($sqlU);
   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 -->
   <form id='formProfessors' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='Name'>
-      <input type='email' name='Email' placeholder='Email' id='Email'>
-      <input type='text' name='Discipline' placeholder='Discipline' id='Discipline'>
-      <input type='text' name='Expertise' placeholder='Expertise' id='Expertise'>
+      <input type='text' name='Name' placeholder='Name' id='NameP'>
+      <input type='email' name='Email' placeholder='Email' id='EmailP'>
+      <input type='text' name='Discipline' placeholder='Discipline' id='DisciplineP'>
+      <input type='text' name='Expertise' placeholder='Expertise' id='ExpertiseP'>
   </form>
   <button type="button" name="button" id="addProfessors" onclick="AddProfessors()">Add Professors</button>
 
@@ -75,10 +75,9 @@ if ($resultP->num_rows > 0) {
 
 <!-- Research Tab -->
 <div class="filterDiv research">
-  <form id='formProfessors' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='Name'>
-
-      <select class='Email' name='Email' placeholder='Email' id='Email'>
+  <form id='formResearch' name='professors' method="post">
+      <input type='text' name='Name' placeholder='Name' id='NameR'>
+      <select class='Email' name='Email' placeholder='Email' id='EmailR'>
         <option value="">Email</option>
         <?php
         if ($emailListR->num_rows > 0) {
@@ -90,12 +89,12 @@ if ($resultP->num_rows > 0) {
         }
         ?>
       </select>
-
-      <input type='text' name='Description' placeholder='Description' id='Description'>
-      <input type='text' name='Experience' placeholder='Experience' id='Experience'>
-      <input type='text' name='Compensation' placeholder='Compensation' id='Compensation'>
+      <input type='text' name='Description' placeholder='Description' id='DescriptionR'>
+      <input type='text' name='Experience' placeholder='Experience' id='ExperienceR'>
+      <input type='text' name='Compensation' placeholder='Compensation' id='CompensationR'>
   </form>
-  <button type="button" name="button" id="saveResearch">Save to Database</button>
+  <button type="button" name="button" id="addResearch" onclick="AddResearch()">Add Research</button>
+
 
   <table>
     <thead>
