@@ -178,7 +178,7 @@ function AddUser() {
         }
         else {
           alert('There was an error removing the selected entry.')
-          $('button#'+rowID+'.confirm.delete').removeAttr("disabled");
+          $('button.confirm.delete').removeAttr("disabled");
         }
       }
     });

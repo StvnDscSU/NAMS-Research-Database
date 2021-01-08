@@ -104,19 +104,27 @@ if ($resultP->num_rows > 0) {
         <th>Description</th>
         <th>Experience</th>
         <th>Compensation</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <?php
       if ($resultR->num_rows > 0) {
           while($rowR = $resultR->fetch_assoc()) {
-              ?>
-              <tr>
+              $counter++;?>
+              <tr id='<?=$counter?>'>
                   <td><?=$rowR['name'];?></td>
                   <td><?=$rowR['email'];?></td>
                   <td><?=$rowR['description'];?></td>
                   <td><?=$rowR['experience'];?></td>
                   <td><?=$rowR['compensation'];?></td>
+                  <td>
+                      <button type="button" class='delete active'>Delete</button>
+                      <button type="button" class='confirm delete'>Confirm</button>
+
+                      <button type="button" class='edit active'>Edit</button>
+                      <button type="button" class='save'>Save</button>
+                  </td>
               </tr>
       <?php
           }
