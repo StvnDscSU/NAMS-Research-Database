@@ -129,6 +129,7 @@ function AddUser() {
     var table = 'professors';
     var row = $(this).parent().parent();
     var rowID = this.id;
+    var email = $(this).parent().parent().find("#email").html();
     $('button#'+rowID+'.confirm.delete').attr("disabled", "disabled");
 
     $.ajax({
@@ -137,7 +138,7 @@ function AddUser() {
       cache: false,
       data:{
         table: table,
-        email: $(this).attr("id")
+        email: email
       },
       success: function(dataResult){
         var dataResult = JSON.parse(dataResult);

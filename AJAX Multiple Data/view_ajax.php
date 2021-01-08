@@ -42,20 +42,21 @@ $resultU = $conn->query($sqlU);
     </thead>
     <tbody>
 <?php
+$counter = 0;
 if ($resultP->num_rows > 0) {
     while($rowP = $resultP->fetch_assoc()) {
-        ?>
-        <tr>
+        $counter++;?>
+        <tr id='$counter'>
             <td><?=$rowP['Name'];?></td>
-            <td><?=$rowP['Email'];?></td>
+            <td id='email'><?=$rowP['Email'];?></td>
             <td><?=$rowP['Discipline'];?></td>
             <td><?=$rowP['Expertise'];?></td>
             <td>
-                <button type="button" id='<?=$rowP['Email'];?>' class='delete active'>Delete</button>
-                <button type="button" id='<?=$rowP['Email'];?>' class='confirm delete'>Confirm</button>
+                <button type="button" id='<?=$counter;?>' class='delete active'>Delete</button>
+                <button type="button" id='<?=$counter;?>' class='confirm delete'>Confirm</button>
 
-                <button type="button" id='<?=$rowP['Email'];?>' class='edit active'>Edit</button>
-                <button type="button" id='<?=$rowP['Email'];?>' class='edit'>Save</button>
+                <button type="button" id='<?=$counter;?>' class='edit active'>Edit</button>
+                <button type="button" id='<?=$counter;?>' class='edit'>Save</button>
             </td>
         </tr>
 <?php
