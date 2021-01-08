@@ -33,7 +33,6 @@ function viewData()
 		url: "view_ajax.php",
 		type: "POST",
 		cache: false,
-    data: {'professor': professors},
 		success: function(data){
 			$('#multi').html(data);
 		}
