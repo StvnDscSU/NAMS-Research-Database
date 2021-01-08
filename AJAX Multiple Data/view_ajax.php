@@ -11,7 +11,6 @@ $resultR = $conn->query($sqlR);
 $sqlU = "SELECT * FROM user";
 $resultU = $conn->query($sqlU);
 ?>
-
 <!-- Professors Tab -->
 <div class="filterDiv professors">
   <form id='formProfessors' name='professors' method="post">
@@ -128,6 +127,4 @@ if ($resultP->num_rows > 0) {
 
 
 <script src="script.js"></script>
-<script>
-
-</script>
+<script>filterButton('professors');</script>

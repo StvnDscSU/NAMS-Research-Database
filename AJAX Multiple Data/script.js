@@ -1,4 +1,4 @@
-var 
+
 
 function filterButton(c) {
   var x, i;
