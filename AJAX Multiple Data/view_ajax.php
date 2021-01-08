@@ -22,7 +22,6 @@ $resultU = $conn->query($sqlU);
     <p>Hello there!</p>
   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 -->
-  </div>
   <form id='formProfessors' name='professors' method="post">
       <input type='text' name='Name' placeholder='Name' id='Name'>
       <input type='email' name='Email' placeholder='Email' id='Email'>
@@ -51,7 +50,13 @@ if ($resultP->num_rows > 0) {
             <td><?=$rowP['Email'];?></td>
             <td><?=$rowP['Discipline'];?></td>
             <td><?=$rowP['Expertise'];?></td>
-            <td class="delete" id='<?=$rowP['Email'];?>'><?=$rowP['Email'];?></td>
+            <td>
+                <button type="button" id='<?=$rowP['Email'];?>' class='delete active'>Delete</button>
+                <button type="button" id='<?=$rowP['Email'];?>' class='confirm delete'>Confirm</button>
+
+                <button type="button" id='<?=$rowP['Email'];?>' class='edit active'>Edit</button>
+                <button type="button" id='<?=$rowP['Email'];?>' class='edit'>Save</button>
+            </td>
         </tr>
 <?php
     }

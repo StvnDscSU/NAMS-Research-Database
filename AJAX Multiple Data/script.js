@@ -62,6 +62,18 @@ for (var i = 0; i < buttons.length; i++) {
 }
 
 /*** TABLE AUGMENTATIONS ***/
+/* Buttons */
+$('button.delete').on('click', function() {
+  var rowID = this.id;
+  $('button#'+rowID+'.delete').toggleClass('active', false);
+  $('button#'+rowID+'.confirm.delete').toggleClass('active', true);
+});
+
+$('button.edit').on('click', function() {
+  var rowID = this.id;
+  $('button#'+rowID+'.edit').toggleClass('active');
+});
+
 /* Table Add */
 function AddProfessors() {
     $("#addProfessors").attr("disabled", "disabled");
@@ -113,9 +125,12 @@ function AddUser() {
 }
 
 /* Table Delete */
-  $(document).on("click", ".delete", function() {
+  $(document).on("click", ".confirm.delete", function() {
     var table = 'professors';
-    var row = $(this).parent();
+    var row = $(this).parent().parent();
+    var rowID = this.id;
+    $('button#'+rowID+'.confirm.delete').attr("disabled", "disabled");
+
     $.ajax({
       url: "src/delete.php",
       type: "POST",
@@ -132,7 +147,10 @@ function AddUser() {
         }
         else {
           alert('There was an error removing the selected entry.')
+          $('button#'+rowID+'.confirm.delete').removeAttr("disabled");
         }
       }
     });
   });
+
+/* Table Edit */
