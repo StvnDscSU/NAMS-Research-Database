@@ -46,17 +46,22 @@ $counter = 0;
 if ($resultP->num_rows > 0) {
     while($rowP = $resultP->fetch_assoc()) {
         $counter++;?>
-        <tr id='$counter'>
+        <tr id='<?=$counter?>'>
             <td><?=$rowP['Name'];?></td>
             <td id='email'><?=$rowP['Email'];?></td>
-            <td><?=$rowP['Discipline'];?></td>
-            <td><?=$rowP['Expertise'];?></td>
-            <td>
-                <button type="button" id='<?=$counter;?>' class='delete active'>Delete</button>
-                <button type="button" id='<?=$counter;?>' class='confirm delete'>Confirm</button>
 
-                <button type="button" id='<?=$counter;?>' class='edit active'>Edit</button>
-                <button type="button" id='<?=$counter;?>' class='edit'>Save</button>
+            <td class='editable' id='disciplineInfo'><?=$rowP['Discipline'];?></td>
+            <td class='editable hide' id='discipline'><input type="text" name="expertise" id='discipline' value="<?=$rowP['Discipline'];?>" required></td>
+
+            <td class='editable' id='expertiseInfo'><?=$rowP['Expertise'];?></td>
+            <td class='editable hide' id='expertise'><input type="text" name="expertise" id='expertise' value="<?=$rowP['Expertise'];?>" required></td>
+
+            <td>
+                <button type="button" class='delete active'>Delete</button>
+                <button type="button" class='confirm delete'>Confirm</button>
+
+                <button type="button" class='edit active'>Edit</button>
+                <button type="button" class='save'>Save</button>
             </td>
         </tr>
 <?php

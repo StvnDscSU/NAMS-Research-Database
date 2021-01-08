@@ -138,10 +138,15 @@ tr.hidden.active td div {
 }
 
 /* Update Button CSS */
-button.delete, button.edit {
+button.delete, button.edit, button.save {
   display: none;
 }
 
 button.active {
   display: inline;
+}
+
+/* Editable Rows */
+td.editable.hide {
+  display: none;
 }

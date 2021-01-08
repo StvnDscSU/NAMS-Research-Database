@@ -62,17 +62,7 @@ for (var i = 0; i < buttons.length; i++) {
 }
 
 /*** TABLE AUGMENTATIONS ***/
-/* Buttons */
-$('button.delete').on('click', function() {
-  var rowID = this.id;
-  $('button#'+rowID+'.delete').toggleClass('active', false);
-  $('button#'+rowID+'.confirm.delete').toggleClass('active', true);
-});
 
-$('button.edit').on('click', function() {
-  var rowID = this.id;
-  $('button#'+rowID+'.edit').toggleClass('active');
-});
 
 /* Table Add */
 function AddProfessors() {
@@ -128,9 +118,9 @@ function AddUser() {
   $(document).on("click", ".confirm.delete", function() {
     var table = 'professors';
     var row = $(this).parent().parent();
-    var rowID = this.id;
+    var rowID = $(this).parent().parent().attr('id');
     var email = $(this).parent().parent().find("#email").html();
-    $('button#'+rowID+'.confirm.delete').attr("disabled", "disabled");
+    $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
 
     $.ajax({
       url: "src/delete.php",
@@ -154,4 +144,74 @@ function AddUser() {
     });
   });
 
+/* Buttons */
+$('button.delete').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  $('tr#'+rowID+' button.delete').toggleClass('active', false);
+  $('tr#'+rowID+' button.confirm.delete').toggleClass('active', true);
+});
+
+$('button.edit').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  editButton(rowID);
+});
+var press = 0;
+function editButton(rowID) {
+  alert(++press);
+  $('tr#'+rowID+' td.editable').toggleClass('hide');
+
+  $('tr#'+rowID+' button.edit').toggleClass('active', false);
+  $('tr#'+rowID+' button.save').toggleClass('active', true);
+}
+
+function saveButton(rowID) {
+  alert(++press);
+  $('tr#'+rowID+' td.editable').toggleClass('hide');
+
+  $('tr#'+rowID+' button.save.active').toggleClass('active', false);
+}
+
 /* Table Edit */
+// Professors
+  $(document).on("click", ".save", function() {
+    var rowID = $(this).parent().parent().attr('id');
+    $("button.edit").attr("disabled", "disabled");
+    var table = 'professors';
+    var email = $(this).parent().parent().find("#email").html();
+
+    var discipline = $(this).parent().parent().find("#discipline").find('input').val();
+    var expertise = $(this).parent().parent().find("#expertise").find('input').val();
+
+
+    if(discipline!="" && expertise!="") {
+      $.ajax({
+        url: "src/update.php",
+        type: "POST",
+        data: {
+          table: table,
+          email: email,
+          discipline: discipline,
+          expertise: expertise
+        },
+        cache: false,
+        success: function(dataResult) {
+          var dataResult = JSON.parse(dataResult);
+          if(dataResult.statusCode==200) {
+          $("button.save").removeAttr("disabled");
+          viewData();
+            //$("#success").show();
+            //$('#success').html('Data added successfully!');
+          }
+          else if(dataResult.statusCode==201) {
+            alert("Query Error! Please Make sure no duplicate entries were input.");
+          }
+          $("button.save").removeAttr("disabled");
+        }
+      });
+    }
+    else{
+      alert('Please fill in every field!');
+      $("button.save").removeAttr("disabled");
+    }
+
+    });
