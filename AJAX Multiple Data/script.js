@@ -156,6 +156,14 @@ function AddUser() {
 
 /* Table Delete */
 // Professors
+$('button#stopData').off('click').on('click', greet);
+
+function greet() {
+  $('button#stopData').off('click');
+  alert('hi');
+  $('button#stopData').on('click', greet);
+}
+
   $(document).on("click", "#professors.confirm.delete", function() {
     var table = $(this).attr('id');
     var row = $(this).parent().parent();
@@ -216,6 +224,7 @@ $(document).on("click", "#research.confirm.delete", function() {
     }
   });
 });
+
 
 /* Table Edit */
 // Professors
