@@ -143,14 +143,18 @@ if ($resultP->num_rows > 0) {
   </table>
 </div>
 
-<!-- Users Tab -->
+<!-- user Tab -->
 <div class="filterDiv users">
-  <form id='formProfessors' name='professors' method="post">
+  <form id='formUser' name='professors' method="post">
       <input type='text' name='Username' placeholder='Username' id='Username'>
       <input type='text' name='Pin' placeholder='Pin' id='Pin'>
-      <input type='text' name='accesslevel' placeholder='Access Level' id='accesslevel'>
+      <select name="AccessLevel" placeholder='Access Level' id='AccessLevel'>
+        <option value="">Access Level</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
   </form>
-  <button type="button" name="button" id="saveUsers">Save to Database</button>
+  <button type="button" name="button" id="addUser" onclick="AddUser()">Save User</button>
 
   <table>
     <thead>
@@ -158,17 +162,34 @@ if ($resultP->num_rows > 0) {
         <th>Username</th>
         <th>Pin</th>
         <th>Access Level</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <?php
       if ($resultU->num_rows > 0) {
           while($rowU = $resultU->fetch_assoc()) {
-              ?>
-              <tr>
-                  <td><?=$rowU['username'];?></td>
+              $counter++;?>
+              <tr id='<?=$counter?>'>
+                  <td id='username'><?=$rowU['username'];?></td>
                   <td><?=$rowU['password'];?></td>
-                  <td><?=$rowU['accesslevel'];?></td>
+
+                  <td class='editable' id='accesslevelInfo'><?=$rowU['accesslevel'];?></td>
+                  <td class='editable hide' id='accesslevel'>
+                    <select class='editable hide' id='accessleveldropdownmenu'>
+                      <option value="<?=$rowU['accesslevel'];?>"><?=$rowU['accesslevel'];?></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+
+                  <td>
+                      <button type="button" id="user" class='delete active'>Delete</button>
+                      <button type="button" id="user" class='confirm delete'>Confirm</button>
+
+                      <button type="button" id="user" class='edit active'>Edit</button>
+                      <button type="button" id="user" class='save'>Save</button>
+                  </td>
               </tr>
       <?php
           }

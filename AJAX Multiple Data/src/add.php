@@ -32,6 +32,18 @@ if ($table == 'professors') {
    } else {
      echo json_encode(array("statusCode"=>201));
    }
+} else if ($table == 'user') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $accesslevel = $_POST['accesslevel'];
+  $sqlR = "INSERT INTO user (username, password, accesslevel)
+   VALUES ('$username', '$password', '$accesslevel')";
+
+   if (mysqli_query($conn, $sqlR)) {
+     echo json_encode(array("statusCode"=>200));
+   } else {
+     echo json_encode(array("statusCode"=>201));
+   }
 }
 
 ?>

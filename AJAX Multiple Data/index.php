@@ -15,8 +15,6 @@
   <button class="button dorm" onclick="changeTab('research')">Research</button> <!-- Buttons whose classes end in "dorm" will not be highlighted. -->
   <button class="button dorm" onclick="changeTab('users')">Users</button> <!-- Button classes change upon clicking on a button. -->
 </div>
-<button onclick="viewData()">Update View</button> <!-- Button classes change upon clicking on a button. -->
-<button id="stopData">Stop AJAX</button>
 <br><br>
 
 <div class="multi" id="multi">

@@ -31,6 +31,17 @@ if ($table == 'professors') {
    else {
      echo json_encode(array("statusCode"=>201));
    }
+} else if ($table == 'user') {
+  $username = $_POST['username'];
+  $accesslevel = $_POST['accesslevel'];
+  $sql = "UPDATE user SET accesslevel = '$accesslevel' WHERE username = '$username'";
+
+   if (mysqli_query($conn, $sql)) {
+     echo json_encode(array("statusCode"=>200));
+   }
+   else {
+     echo json_encode(array("statusCode"=>201));
+   }
 }
 
 ?>
