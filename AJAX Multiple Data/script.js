@@ -155,20 +155,27 @@ function AddUser() {
 }
 
 /* Table Delete */
-// Professors
-$('button#stopData').off('click').on('click', greet);
-
-function greet() {
-  $('button#stopData').off('click');
-  alert('hi');
-  $('button#stopData').on('click', greet);
+// Use this code block to prevent AJAX from calling the Delete function multiple times after updating the table.
+$('.confirm.delete').off('click').on('click', check);
+function check() {
+  $('.confirm.delete').off('click'); // Disable button, prevent more calls
+  var table = $(this).attr('id');
+  if (table == 'professors') {
+    DeleteProfessor($(this));
+  } else if (table == 'research') {
+    DeleteResearch($(this));
+  } else if (table == 'user') {
+    //DeleteUser($(this));
+  }
+  $('.confirm.delete').on('click', check); // enable the button
 }
 
-  $(document).on("click", "#professors.confirm.delete", function() {
-    var table = $(this).attr('id');
-    var row = $(this).parent().parent();
-    var rowID = $(this).parent().parent().attr('id');
-    var email = $(this).parent().parent().find("#email").html();
+// Professors
+function DeleteProfessor(thisObj) {
+    var table = $(thisObj).attr('id');
+    var row = $(thisObj).parent().parent();
+    var rowID = $(thisObj).parent().parent().attr('id');
+    var email = $(thisObj).parent().parent().find("#email").html();
     $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
 
     $.ajax({
@@ -191,15 +198,17 @@ function greet() {
         }
       }
     });
-  });
+  }
 
 // Research
-$(document).on("click", "#research.confirm.delete", function() {
-  var table = $(this).attr('id');
-  var row = $(this).parent().parent();
-  var rowID = $(this).parent().parent().attr('id');
-  var name = $(this).parent().parent().find("#name").html();
-  var email = $(this).parent().parent().find("#email").html();
+function DeleteResearch(thisObj) {
+  var table = $(thisObj).attr('id');
+  var row = $(thisObj).parent().parent();
+  var rowID = $(thisObj).parent().parent().attr('id');
+  var name = $(thisObj).parent().parent().find("#name").html();
+  var email = $(thisObj).parent().parent().find("#email").html();
+  //alert('\ntable: ' + table +  '\nrow: ' + row +  '\nrowID: ' + rowID +  '\nname: ' + name +  '\nemail: ' + email);
+
   $('tr#'+rowID+' button.confirm.delete').attr("disabled", "disabled");
 
   $.ajax({
@@ -223,7 +232,7 @@ $(document).on("click", "#research.confirm.delete", function() {
       }
     }
   });
-});
+};
 
 
 /* Table Edit */
