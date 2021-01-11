@@ -28,13 +28,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <html>
+<div class="header-image"></div>
 <body>
 <head>
     <title>NAMS Professor Database</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<div class="container">
+
+<div class="content">
   <!-- LOGIN FUNCTION -->
   <form action = "" method = "post">
     <input type = "text" name = "username" class = "box" placeholder="Username"/>
@@ -77,4 +79,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	});
 </script>
 </body>
+<div class="footer-image"></div>
 </html>

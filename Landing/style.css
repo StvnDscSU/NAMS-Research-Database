@@ -1,19 +1,47 @@
-
-body {
-    background: #282c34;
-    color: #fff !important;
+/*** Stockton CSS ***/
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.content {
+  min-height: 100%;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
 }
 
-html {
-    background: #282c34;
-    color: #fff !important;
+.header-image {
+  background-image: url("images/StocktonHeader.png");
+  height: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-table {
-    color: #fff !important;
+.footer-image {
+  background-image: url("images/StocktonFooter.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-/* Colors for  */
+
+
+/* Colors for Table */
+:root {
+  --table-border: #ccc;
+  --table-main-th-bg: #CCCCCC;
+  --table-main-tr-bg: #fff;
+  --table-main-tr-hover-bg: #D6D6D6;
+  --table-hidden-th-bg: #6C7589;
+  --table-hidden-tr-bg: #6C7589;
+  --table-hidden-tr-hover-bg: #6C7589;
+}
+/*
 :root {
   --table-border: #ccc;
   --table-main-th-bg: #181a1f;
@@ -22,12 +50,11 @@ table {
   --table-hidden-th-bg: #21252a;
   --table-hidden-tr-bg: #313741;
   --table-hidden-tr-hover-bg: #4b5364;
-}
+}*/
 
 table {
   border: none;
   border-collapse: collapse;
-  color: #fff;
   width: 100%;
 }
 
