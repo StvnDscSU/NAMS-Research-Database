@@ -37,9 +37,9 @@ html, body {
   --table-main-th-bg: #CCCCCC;
   --table-main-tr-bg: #fff;
   --table-main-tr-hover-bg: #D6D6D6;
-  --table-hidden-th-bg: #6C7589;
-  --table-hidden-tr-bg: #6C7589;
-  --table-hidden-tr-hover-bg: #6C7589;
+  --table-hidden-th-bg: #CCCCCC;
+  --table-hidden-tr-bg: #fff;
+  --table-hidden-tr-hover-bg: #D6D6D6;
 }
 /*
 :root {
