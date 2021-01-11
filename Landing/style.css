@@ -2,6 +2,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  font-family: sans-serif;
 }
 .content {
   min-height: 100%;
@@ -29,28 +30,38 @@ html, body {
   position: relative;
 }
 
+h2 {
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+hr {
+  border: 1px solid #eee;
+}
+
+/*** Login and Search ***/
+/* Login CSS */
 
 
+/* Search CSS */
+
+
+/*** Table CSS ***/
 /* Colors for Table */
 :root {
   --table-border: #ccc;
   --table-main-th-bg: #CCCCCC;
   --table-main-tr-bg: #fff;
-  --table-main-tr-hover-bg: #D6D6D6;
-  --table-hidden-th-bg: #CCCCCC;
+  --table-main-tr-hover-bg: #E0E0E0;
+
+  --table-hidden-th-bg: #E0E0E0;
   --table-hidden-tr-bg: #fff;
-  --table-hidden-tr-hover-bg: #D6D6D6;
+  --table-hidden-tr-hover-bg: #E0E0E0;
 }
-/*
-:root {
-  --table-border: #ccc;
-  --table-main-th-bg: #181a1f;
-  --table-main-tr-bg: #282c34;
-  --table-main-tr-hover-bg: #21252b;
-  --table-hidden-th-bg: #21252a;
-  --table-hidden-tr-bg: #313741;
-  --table-hidden-tr-hover-bg: #4b5364;
-}*/
 
 table {
   border: none;
@@ -86,7 +97,6 @@ table {
   background: var(--table-main-tr-hover-bg);
 }
 
-
 /*** Subtable CSS ***/
 /* Formats Subtable. Provides bottom-border to distinguish research/professor rows. */
 #professor_table table.hidden {
@@ -118,6 +128,8 @@ table {
 #professor_table .hidden tr:hover {
   background: var(--table-hidden-tr-hover-bg);
 }
+
+
 
 /*** ANIMATION ***/
 /* Hide/Show Animation */
