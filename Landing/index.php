@@ -57,7 +57,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       <tr class="main_head">
           <th>Name</th>
           <th>Discipline</th>
-          <th>Expertise</th>
+          <th>Subdiscipline</th>
+          <th>Openings</th>
       </tr>
     </thead>
     <tbody id="table"> <!-- ID must be "table" due to Ajax view script -->

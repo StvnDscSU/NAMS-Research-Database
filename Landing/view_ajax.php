@@ -2,7 +2,7 @@
 // Database Connection setup beforehand.
 include 'database.php';
 // Query the Professor Table and sets up a query for the subtables.
-$sql = "SELECT * FROM professors";
+$sql = "SELECT professors.Name AS Name, professors.Email AS Email, professors.Discipline AS Discipline, professors.Expertise AS Expertise, COUNT(research.email) AS Openings FROM professors left join research on professors.Email = research.email GROUP BY Discipline, Name, Expertise, Email ORDER by professors.Name ASC";
 $result = $conn->query($sql);
 $query = "SELECT research.name AS Name, research.email AS Email, research.experience AS Experience, Description, Compensation FROM research left join professors on research.email = professors.email";
 $researchvalue = $conn->query($query); // We use this line within a While loop later on.
@@ -17,6 +17,7 @@ if ($result->num_rows > 0) {
             <td><?=$row['Name'];?></td>
             <td><?=$row['Discipline'];?></td>
             <td><?=$row['Expertise'];?></td>
+            <td><?=$row['Openings'];?></td>
         </tr>
 
         <?php
@@ -39,7 +40,7 @@ if ($result->num_rows > 0) {
 								<!-- SUBTABALE START -->
                 <!-- Initialize the subtable and create the header -->
                 <tr class="hidden" id="<?=$rowID;?>">
-                <td colspan="3" class="hidden">
+                <td colspan="4" class="hidden">
                   <div>
                     <table class="hidden">
                         <tr>
