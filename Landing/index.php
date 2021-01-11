@@ -68,8 +68,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </form>
 
   <!-- SEARCH FUNCTION -->
-  <input type="text" id="search" placeholder="Type to search">
-  <select id="filterList" onchange="filterList()" class='form-control'>
+  <input class="search" type="text" id="search" placeholder="Search Subdiscipline">
+  <select class="search" id="filterList" onchange="filterList()" class='form-control'>
     <option></option>
     <option>Mathematics</option>
     <option>Chemistry</option>
@@ -80,10 +80,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	<table id="professor_table">
     <thead>
       <tr class="main_head">
-          <th>Name</th>
-          <th>Discipline</th>
-          <th>Subdiscipline</th>
-          <th>Openings</th>
+          <th style="width:25%;">Name</th>
+          <th style="width:20%;">Discipline</th>
+          <th style="width:45%;">Subdiscipline</th>
+          <th style="width:5%;">Openings</th>
       </tr>
     </thead>
     <tbody id="table"> <!-- ID must be "table" due to Ajax view script -->

@@ -28,6 +28,7 @@ html, body {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  margin-top: 40px;
 }
 
 h2 {
@@ -44,11 +45,16 @@ hr {
 }
 
 /*** Login and Search ***/
-/* Login CSS */
-
+form.login input, .search {
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
 
 /* Search CSS */
-
+input.search {
+  width: 25%;
+}
 
 /*** Table CSS ***/
 /* Colors for Table */
