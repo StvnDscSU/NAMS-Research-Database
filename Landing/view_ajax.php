@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
         ?>
         <!-- Populates the main table with each professor's Name, Discipline, and Expertise -->
         <tr class="main" id="<?=$rowID;?>"> <!-- Class is main to distinguish styling between Professor rows and subtables -->
-            <td><?=$row['Name'];?></td>
+            <td><a href="mailto:<?=$row['Email'];?>"><?=$row['Name'];?></td>
             <td><?=$row['Discipline'];?></td>
             <td><?=$row['Expertise'];?></td>
             <td><?=$row['Openings'];?></td>
