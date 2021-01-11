@@ -23,10 +23,10 @@ $resultU = $conn->query($sqlU);
   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 -->
   <form id='formProfessors' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='Name'>
-      <input type='email' name='Email' placeholder='Email' id='Email'>
-      <input type='text' name='Discipline' placeholder='Discipline' id='Discipline'>
-      <input type='text' name='Expertise' placeholder='Expertise' id='Expertise'>
+      <input type='text' name='Name' placeholder='Name' id='NameP'>
+      <input type='email' name='Email' placeholder='Email' id='EmailP'>
+      <input type='text' name='Discipline' placeholder='Discipline' id='DisciplineP'>
+      <input type='text' name='Expertise' placeholder='Expertise' id='ExpertiseP'>
   </form>
   <button type="button" name="button" id="addProfessors" onclick="AddProfessors()">Add Professors</button>
 
@@ -57,11 +57,11 @@ if ($resultP->num_rows > 0) {
             <td class='editable hide' id='expertise'><input type="text" name="expertise" id='expertise' value="<?=$rowP['Expertise'];?>" required></td>
 
             <td>
-                <button type="button" class='delete active'>Delete</button>
-                <button type="button" class='confirm delete'>Confirm</button>
+                <button type="button" id="professors" class='delete active'>Delete</button>
+                <button type="button" id="professors" class='confirm delete'>Confirm</button>
 
-                <button type="button" class='edit active'>Edit</button>
-                <button type="button" class='save'>Save</button>
+                <button type="button" id="professors" class='edit active'>Edit</button>
+                <button type="button" id="professors" class='save'>Save</button>
             </td>
         </tr>
 <?php
@@ -75,10 +75,9 @@ if ($resultP->num_rows > 0) {
 
 <!-- Research Tab -->
 <div class="filterDiv research">
-  <form id='formProfessors' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='Name'>
-
-      <select class='Email' name='Email' placeholder='Email' id='Email'>
+  <form id='formResearch' name='professors' method="post">
+      <input type='text' name='Name' placeholder='Name' id='NameR'>
+      <select class='Email' name='Email' placeholder='Email' id='EmailR'>
         <option value="">Email</option>
         <?php
         if ($emailListR->num_rows > 0) {
@@ -90,12 +89,12 @@ if ($resultP->num_rows > 0) {
         }
         ?>
       </select>
-
-      <input type='text' name='Description' placeholder='Description' id='Description'>
-      <input type='text' name='Experience' placeholder='Experience' id='Experience'>
-      <input type='text' name='Compensation' placeholder='Compensation' id='Compensation'>
+      <input type='text' name='Description' placeholder='Description' id='DescriptionR'>
+      <input type='text' name='Experience' placeholder='Experience' id='ExperienceR'>
+      <input type='text' name='Compensation' placeholder='Compensation' id='CompensationR'>
   </form>
-  <button type="button" name="button" id="saveResearch">Save to Database</button>
+  <button type="button" name="button" id="addResearch" onclick="AddResearch()">Add Research</button>
+
 
   <table>
     <thead>
@@ -105,19 +104,36 @@ if ($resultP->num_rows > 0) {
         <th>Description</th>
         <th>Experience</th>
         <th>Compensation</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <?php
       if ($resultR->num_rows > 0) {
           while($rowR = $resultR->fetch_assoc()) {
-              ?>
-              <tr>
-                  <td><?=$rowR['name'];?></td>
-                  <td><?=$rowR['email'];?></td>
-                  <td><?=$rowR['description'];?></td>
-                  <td><?=$rowR['experience'];?></td>
-                  <td><?=$rowR['compensation'];?></td>
+              $counter++;?>
+              <tr id='<?=$counter?>'>
+                  <td id='name'><?=$rowR['name'];?></td>
+                  <td id='email'><?=$rowR['email'];?></td>
+
+
+                  <td class='editable' id='descriptionInfo'><?=$rowR['description'];?></td>
+                  <td class='editable hide' id='description'><input type="text" name="description" id='description' value="<?=$rowR['description'];?>" required></td>
+
+                  <td class='editable' id='experienceInfo'><?=$rowR['experience'];?></td>
+                  <td class='editable hide' id='experience'><input type="text" name="experience" id='experience' value="<?=$rowR['experience'];?>" required></td>
+
+                  <td class='editable' id='compensationInfo'><?=$rowR['compensation'];?></td>
+                  <td class='editable hide' id='compensation'><input type="text" name="compensation" id='compensation' value="<?=$rowR['compensation'];?>" required></td>
+
+
+                  <td>
+                      <button type="button" id="research" class='delete active'>Delete</button>
+                      <button type="button" id="research" class='confirm delete'>Confirm</button>
+
+                      <button type="button" id="research" class='edit active'>Edit</button>
+                      <button type="button" id="research" class='save'>Save</button>
+                  </td>
               </tr>
       <?php
           }
@@ -127,14 +143,18 @@ if ($resultP->num_rows > 0) {
   </table>
 </div>
 
-<!-- Users Tab -->
+<!-- user Tab -->
 <div class="filterDiv users">
-  <form id='formProfessors' name='professors' method="post">
+  <form id='formUser' name='professors' method="post">
       <input type='text' name='Username' placeholder='Username' id='Username'>
       <input type='text' name='Pin' placeholder='Pin' id='Pin'>
-      <input type='text' name='accesslevel' placeholder='Access Level' id='accesslevel'>
+      <select name="AccessLevel" placeholder='Access Level' id='AccessLevel'>
+        <option value="">Access Level</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
   </form>
-  <button type="button" name="button" id="saveUsers">Save to Database</button>
+  <button type="button" name="button" id="addUser" onclick="AddUser()">Save User</button>
 
   <table>
     <thead>
@@ -142,17 +162,34 @@ if ($resultP->num_rows > 0) {
         <th>Username</th>
         <th>Pin</th>
         <th>Access Level</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <?php
       if ($resultU->num_rows > 0) {
           while($rowU = $resultU->fetch_assoc()) {
-              ?>
-              <tr>
-                  <td><?=$rowU['username'];?></td>
+              $counter++;?>
+              <tr id='<?=$counter?>'>
+                  <td id='username'><?=$rowU['username'];?></td>
                   <td><?=$rowU['password'];?></td>
-                  <td><?=$rowU['accesslevel'];?></td>
+
+                  <td class='editable' id='accesslevelInfo'><?=$rowU['accesslevel'];?></td>
+                  <td class='editable hide' id='accesslevel'>
+                    <select class='editable hide' id='accessleveldropdownmenu'>
+                      <option value="<?=$rowU['accesslevel'];?>"><?=$rowU['accesslevel'];?></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+
+                  <td>
+                      <button type="button" id="user" class='delete active'>Delete</button>
+                      <button type="button" id="user" class='confirm delete'>Confirm</button>
+
+                      <button type="button" id="user" class='edit active'>Edit</button>
+                      <button type="button" id="user" class='save'>Save</button>
+                  </td>
               </tr>
       <?php
           }
@@ -171,3 +208,6 @@ if ($resultP->num_rows > 0) {
 <!-- Otherwise, we can directly call filterButton() instead of passing the variable to here. -->
 <?php $tab = isset($_REQUEST['tabChoice'])?$_REQUEST['tabChoice']:""; ?>
 <script>filterButton('<?php echo $tab ?>');</script>
+<script src='databaseUpdate.js'>
+
+</script>
