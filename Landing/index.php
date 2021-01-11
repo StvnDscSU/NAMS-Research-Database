@@ -1,13 +1,47 @@
+<!-- START THE SESSION -->
+<!-- Paired with the login form. -->
+<?php
+session_start();
+
+include 'database.php';
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  // username and password sent from form
+
+  $myusername = mysqli_real_escape_string($conn,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+
+  $sql = "SELECT accesslevel FROM user WHERE username = '$myusername' and password = '$mypassword'";
+  $user = $conn->query($sql);
+  $row = mysqli_fetch_array($user,MYSQLI_ASSOC);
+
+  $count = mysqli_num_rows($user);
+
+  if($count == 1) {
+    $_SESSION['login_user'] = $myusername;
+
+    header("location: Admin/index.php?sessionid='" . session_id() . "'");
+  } else {
+    print("Your username or password is invalid.");
+  }
+}
+?>
+
 <html>
 <body>
 <head>
-    <title>View Ajax</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NAMS Professor Database</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <div class="container">
+  <!-- LOGIN FUNCTION -->
+  <form action = "" method = "post">
+    <input type = "text" name = "username" class = "box" placeholder="Username"/>
+    <input type = "password" name = "password" class = "box" placeholder="Password"/>
+    <input type = "submit" value = " Administrator Login "/>
+  </form>
+
   <!-- SEARCH FUNCTION -->
   <input type="text" id="search" placeholder="Type to search">
   <select id="filterList" onchange="filterList()" class='form-control'>
