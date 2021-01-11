@@ -104,6 +104,11 @@ table {
   background: var(--table-hidden-th-bg);
 }
 
+/* Subtable Row Host Color */
+#professor_table tr.hidden {
+  background: var(--table-main-tr-bg) !important;
+}
+
 /* Subtable Background Color */
 #professor_table .hidden tr {
   background: var(--table-hidden-tr-bg);
