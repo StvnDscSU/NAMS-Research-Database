@@ -99,12 +99,12 @@ if ($resultP->num_rows > 0) {
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Description</th>
-        <th>Experience</th>
-        <th>Compensation</th>
-        <th>Edit</th>
+        <th style="width:15%;">Name</th>
+        <th style="width:15%;">Email</th>
+        <th style="width:37%;">Description</th>
+        <th style="width:10%;">Experience</th>
+        <th style="width:10%;">Compensation</th>
+        <th style="width:13%;">Edit</th>
       </tr>
     </thead>
     <tbody>

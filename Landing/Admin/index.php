@@ -46,7 +46,6 @@ if(isset($_SESSION['login_user'])) {
   <button class="button tab" onclick="changeTab('users')">Users</button> <!-- Button classes change upon clicking on a button. -->
   <?php endif; ?>
 </div>
-<br><br>
 
 <div class="multi" id="multi">
 
