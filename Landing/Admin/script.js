@@ -72,7 +72,7 @@ function AddProfessors() {
     var discipline = $('#DisciplineP').val();
     var expertise = $('#ExpertiseP').val();
 
-    if(name!="" && email!="" && discipline!="" && expertise!="") {
+    if(name!="" && email!="" && discipline!="") {
       $.ajax({
         url: "src/add.php",
         type: "POST",
@@ -190,7 +190,14 @@ function AddUser() {
 }
 
 /* Table Delete */
+// Delete Button
+$('button.delete').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  $('tr#'+rowID+' button.delete').toggleClass('active', false);
+  $('tr#'+rowID+' button.confirm.delete').toggleClass('active', true);
+});
 // Use this code block to prevent AJAX from calling the Delete function multiple times after updating the table.
+
 $('.confirm.delete').off('click').on('click', check);
 function check() {
   $('.confirm.delete').off('click'); // Disable button, prevent more calls
@@ -302,6 +309,33 @@ function DeleteUser(thisObj) {
 };
 
 /* Table Edit */
+// Edit Button
+$('button.edit').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  editButton(rowID);
+});
+
+$('button.save').on('click', function() {
+  var rowID = $(this).parent().parent().attr('id');
+  var table = $(this).attr('id');
+  $('tr#'+rowID+' button.save').attr("disabled", "disabled");
+  identifyRow(rowID);
+  if (table == 'professors') {
+    SaveProfessors(this);
+  } else if (table == 'research') {
+    SaveResearch(this);
+  } else if (table == 'user') {
+    SaveUser(this);
+  }
+});
+
+function editButton(rowID) {
+  $('tr#'+rowID+' td.editable').toggleClass('hide');
+
+  $('tr#'+rowID+' button.edit').toggleClass('active');
+  $('tr#'+rowID+' button.save').toggleClass('active');
+}
+
 // Professors
 function SaveProfessors (thisObj) {
   var rowID = $(thisObj).parent().parent().attr('id');
@@ -330,7 +364,6 @@ function SaveProfessors (thisObj) {
         $('.locate').toggleClass('locate', false);
         $('.identify td#disciplineInfo').toggleClass('locate');
         $('.identify td#expertiseInfo').toggleClass('locate');
-        console.log('tr#' + rowID + ' td#disciplineInfo');
 
         $('.identify td#disciplineInfo').html(discipline);
         $('.identify td#expertiseInfo').html(expertise);
@@ -430,40 +463,6 @@ function SaveUser (thisObj) {
     }
   });
 };
-
-/* Buttons */
-$('button.delete').on('click', function() {
-  var rowID = $(this).parent().parent().attr('id');
-  $('tr#'+rowID+' button.delete').toggleClass('active', false);
-  $('tr#'+rowID+' button.confirm.delete').toggleClass('active', true);
-});
-
-
-$('button.edit').on('click', function() {
-  var rowID = $(this).parent().parent().attr('id');
-  editButton(rowID);
-});
-
-$('button.save').on('click', function() {
-  var rowID = $(this).parent().parent().attr('id');
-  var table = $(this).attr('id');
-  $('tr#'+rowID+' button.save').attr("disabled", "disabled");
-  identifyRow(rowID);
-  if (table == 'professors') {
-    SaveProfessors(this);
-  } else if (table == 'research') {
-    SaveResearch(this);
-  } else if (table == 'user') {
-    SaveUser(this);
-  }
-});
-
-function editButton(rowID) {
-  $('tr#'+rowID+' td.editable').toggleClass('hide');
-
-  $('tr#'+rowID+' button.edit').toggleClass('active');
-  $('tr#'+rowID+' button.save').toggleClass('active');
-}
 
 /* Identifier */
 function identifyRow(rowID) {

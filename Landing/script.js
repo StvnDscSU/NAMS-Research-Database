@@ -5,7 +5,6 @@ $('tr.main').on('click', function() {
 });
 
 /* DROP-DOWN FILTER */
-
 function filterList() {
   // Since filtering the table relies on the input field, simulates a keystroke
   // in the input field to activate the filter function.

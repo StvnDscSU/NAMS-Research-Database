@@ -118,7 +118,6 @@ table {
   display: block;
 }
 
-
 /* Update Button CSS */
 button.delete, button.edit, button.save {
   display: none;
@@ -128,6 +127,10 @@ button.active {
   display: inline;
 }
 
+/* Update Input Box */
+.editable input {
+  width: 100%;
+}
 /* Editable Rows */
 td.editable.hide {
   display: none;
