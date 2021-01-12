@@ -15,6 +15,7 @@ if ($table == 'professors') {
 	mysqli_close($conn);
 } else if ($table == 'research') {
   $name = $_POST['name'];
+  $email=$_POST['email'];
   $sqlR = "DELETE FROM research WHERE name='$name' and email='$email'";
    if (mysqli_query($conn, $sqlR)) {
      echo json_encode(array("statusCode"=>200));

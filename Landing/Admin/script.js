@@ -1,18 +1,18 @@
-function changeTab(tab) {
-  myVar = tab;
-  filterButton(tab)
+function viewData() {
+  $.ajax({
+    url: "view_ajax.php",
+    type: "POST",
+    data:{"tabChoice":myVar},
+    cache: false,
+    success: function(data) {
+      $('#multi').html(data);
+    }
+  });
 }
 
-function viewData() {
-	$.ajax({
-		url: "view_ajax.php",
-		type: "POST",
-    data:{"tabChoice":myVar},
-		cache: false,
-		success: function(data) {
-			$('#multi').html(data);
-		}
-	});
+function changeTab(tab) {
+  myVar = tab;
+  filterButton(myVar)
 }
 
 function filterButton(c) {

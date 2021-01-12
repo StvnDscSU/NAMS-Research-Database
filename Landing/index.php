@@ -58,7 +58,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   disciplines, or professors. When you find a professor with ongoing research,
   click on their name to view their research opportunities and copy their email.
   </span></p>
-  <hr>
 
   <!-- LOGIN FUNCTION -->
   <form class="login" action = "" method = "post">
@@ -67,10 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type = "submit" value = " Administrator Login "/>
   </form>
 
+  <hr>
   <!-- SEARCH FUNCTION -->
   <input class="search" type="text" id="search" placeholder="Search Subdiscipline">
   <select class="search" id="filterList" onchange="filterList()" class='form-control'>
-    <option></option>
+    <option value="">Discipline</option>
     <option>Mathematics</option>
     <option>Chemistry</option>
     <option>Physics</option>

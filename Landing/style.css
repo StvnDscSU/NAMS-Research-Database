@@ -136,7 +136,6 @@ table {
 }
 
 
-
 /*** ANIMATION ***/
 /* Hide/Show Animation */
 /* PROBLEM -- MAX-HEIGHT MAKES THE TRANSITION JANK */
@@ -152,7 +151,16 @@ tr.hidden.active td div {
   transition: max-height 1.2s, padding 0.6s;
 }
 
-/** EMAIL CLIPBOARD **/
+
+/*** EMAIL CLIPBOARD ***/
+a:link {
+  color: black !important;
+}
+
+a:hover {
+  color: black !important;
+}
+
 .mailto-link {
 	position: relative;
 	padding: 8px 0;

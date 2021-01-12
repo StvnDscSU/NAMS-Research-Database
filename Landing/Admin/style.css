@@ -1,105 +1,87 @@
-
-body {
-    background: #282c34;
-    color: #fff !important;
+/*** Stockton CSS ***/
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+.content {
+  min-height: 100%;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
 }
 
-html {
-    background: #282c34;
-    color: #fff !important;
+.header-image {
+  background-image: url("images/StocktonHeader.png");
+  height: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-table {
-    color: #fff !important;
+.footer-image {
+  background-image: url("images/StocktonFooter.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-top: 40px;
 }
 
-/* Colors for  */
+h2 {
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+hr {
+  border: 1px solid #eee;
+}
+
+/*** Tab ***/
+.button {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+
+.button:hover {
+  background-color: #ddd;
+}
+
+/*** Add ***/
+form.add input, form.add select {
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  margin-bottom: none;
+  padding-bottom: none;
+}
+
+form.add {
+  border-top: 1px solid black;
+}
+
+/* Colors for Table */
 :root {
   --table-border: #ccc;
-  --table-main-th-bg: #181a1f;
-  --table-main-tr-bg: #282c34;
-  --table-main-tr-hover-bg: #21252b;
-  --table-hidden-th-bg: #21252a;
-  --table-hidden-tr-bg: #313741;
-  --table-hidden-tr-hover-bg: #4b5364;
+  --table-main-th-bg: #CCCCCC;
+  --table-main-tr-bg: #fff;
+  --table-main-tr-hover-bg: #E0E0E0;
 }
 
 table {
   border: none;
   border-collapse: collapse;
-  color: #fff;
-  width: 100%;
-}
-
-/* Darken the table's head compared to the rows. */
-#professor_table th {
-  background: var(--table-main-th-bg);
-}
-
-
-/* Provide a bottom-border to only the professor rows. Subtables have similar bottom-border. */
-#professor_table tr.main {
-  border-bottom: 1px solid var(--table-border);
-}
-
-/* Adjust the table structure */
-#professor_table th, #professor_table td {
-  padding: 10px; /* Add padding */
-  font-size: 16px; /* Font size in the table */
-  text-align: left; /* Left-align text */
-}
-
-/* Background for the professor information. Contrast with subtables. */
-#professor_table tr {
-  background: var(--table-main-tr-bg);
-}
-
-/* Highlights current row that mouse is hovering over */
-#professor_table tr:hover {
-  background: var(--table-main-tr-hover-bg);
-}
-
-
-/*** Subtable CSS ***/
-/* Formats Subtable. Provides bottom-border to distinguish research/professor rows. */
-#professor_table table.hidden {
-  width: 100%;
-  border-bottom: 1px solid var(--table-border);
-}
-
-/* Subtable padding. Set to 0 to make the subtable flush with the rows. */
-#professor_table td.hidden {
-  padding: 0 0 0 0 !important;
-}
-
-/* Subtable Header Background Color */
-#professor_table .hidden th {
-  background: var(--table-hidden-th-bg);
-}
-
-/* Subtable Background Color */
-#professor_table .hidden tr {
-  background: var(--table-hidden-tr-bg);
-}
-
-/* Subtable Hover Color */
-#professor_table .hidden tr:hover {
-  background: var(--table-hidden-tr-hover-bg);
-}
-
-/*** ANIMATION ***/
-/* Hide/Show Animation */
-/* PROBLEM -- MAX-HEIGHT MAKES THE TRANSITION JANK */
-tr.hidden td div {
-  max-height: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: max-height 0.6s, padding 0.3s;
-}
-tr.hidden.active td div {
-  max-height: 200px;
-  padding: 10px 10px;
-  transition: max-height 1.2s, padding 0.6s;
 }
 
 
@@ -116,7 +98,6 @@ tr.hidden.active td div {
   text-align: left; /* Left-align text */
 }
 
-/* Provide a bottom-border to only the professor rows. Subtables have similar bottom-border. */
 /* Background for the professor information. Contrast with subtables. */
 .multi tbody tr {
   border-bottom: 1px solid var(--table-border);
@@ -136,6 +117,7 @@ tr.hidden.active td div {
 .show {
   display: block;
 }
+
 
 /* Update Button CSS */
 button.delete, button.edit, button.save {

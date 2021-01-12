@@ -22,22 +22,22 @@ $resultU = $conn->query($sqlU);
     <p>Hello there!</p>
   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 -->
-  <form id='formProfessors' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='NameP'>
-      <input type='email' name='Email' placeholder='Email' id='EmailP'>
-      <input type='text' name='Discipline' placeholder='Discipline' id='DisciplineP'>
-      <input type='text' name='Expertise' placeholder='Expertise' id='ExpertiseP'>
+  <form class="add" id='formProfessors' name='professors' method="post">
+      <input style="width:20%;" type='text' name='Name' placeholder='Name' id='NameP'>
+      <input style="width:23%;" type='email' name='Email' placeholder='Email' id='EmailP'>
+      <input style="width:20%;" type='text' name='Discipline' placeholder='Discipline' id='DisciplineP'>
+      <input style="width:35%;" type='text' name='Expertise' placeholder='Expertise' id='ExpertiseP'>
   </form>
-  <button type="button" name="button" id="addProfessors" onclick="AddProfessors()">Add Professors</button>
+  <button class="add" type="button" name="button" id="addProfessors" onclick="AddProfessors()">Add Professors</button>
 
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Discipline</th>
-        <th>Expertise</th>
-        <th>Edit</th>
+        <th style="width:15%;">Name</th>
+        <th style="width:20%;">Email</th>
+        <th style="width:15%;">Discipline</th>
+        <th style="width:33%;">Expertise</th>
+        <th style="width:12%;">Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -75,9 +75,9 @@ if ($resultP->num_rows > 0) {
 
 <!-- Research Tab -->
 <div class="filterDiv research">
-  <form id='formResearch' name='professors' method="post">
-      <input type='text' name='Name' placeholder='Name' id='NameR'>
-      <select class='Email' name='Email' placeholder='Email' id='EmailR'>
+  <form style="width:100%" class="add" id='formResearch' name='professors' method="post">
+      <input style="width:20%" type='text' name='Name' placeholder='Name' id='NameR'>
+      <select style="width:20%" class='Email' name='Email' placeholder='Email' id='EmailR'>
         <option value="">Email</option>
         <?php
         if ($emailListR->num_rows > 0) {
@@ -89,11 +89,11 @@ if ($resultP->num_rows > 0) {
         }
         ?>
       </select>
-      <input type='text' name='Description' placeholder='Description' id='DescriptionR'>
-      <input type='text' name='Experience' placeholder='Experience' id='ExperienceR'>
-      <input type='text' name='Compensation' placeholder='Compensation' id='CompensationR'>
+      <input style="width:38%" type='text' name='Description' placeholder='Description' id='DescriptionR'>
+      <input style="width:10%" type='text' name='Experience' placeholder='Experience' id='ExperienceR'>
+      <input style="width:10%" type='text' name='Compensation' placeholder='Compensation' id='CompensationR'>
   </form>
-  <button type="button" name="button" id="addResearch" onclick="AddResearch()">Add Research</button>
+  <button class="add" type="button" name="button" id="addResearch" onclick="AddResearch()">Add Research</button>
 
 
   <table>
@@ -145,7 +145,7 @@ if ($resultP->num_rows > 0) {
 
 <!-- user Tab -->
 <div class="filterDiv users">
-  <form id='formUser' name='professors' method="post">
+  <form class="add" id='formUser' name='professors' method="post">
       <input type='text' name='Username' placeholder='Username' id='Username'>
       <input type='text' name='Pin' placeholder='Pin' id='Pin'>
       <select name="AccessLevel" placeholder='Access Level' id='AccessLevel'>
@@ -154,15 +154,15 @@ if ($resultP->num_rows > 0) {
         <option value="2">2</option>
       </select>
   </form>
-  <button type="button" name="button" id="addUser" onclick="AddUser()">Save User</button>
+  <button class="add" type="button" name="button" id="addUser" onclick="AddUser()">Save User</button>
 
   <table>
     <thead>
       <tr>
-        <th>Username</th>
-        <th>Pin</th>
-        <th>Access Level</th>
-        <th>Edit</th>
+        <th style="width:25%;">Username</th>
+        <th style="width:25%;">Pin</th>
+        <th style="width:25%;">Access Level</th>
+        <th style="width:25%;">Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -208,6 +208,5 @@ if ($resultP->num_rows > 0) {
 <!-- Otherwise, we can directly call filterButton() instead of passing the variable to here. -->
 <?php $tab = isset($_REQUEST['tabChoice'])?$_REQUEST['tabChoice']:""; ?>
 <script>filterButton('<?php echo $tab ?>');</script>
-<script src='databaseUpdate.js'>
 
 </script>
